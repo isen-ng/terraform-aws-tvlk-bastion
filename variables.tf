@@ -101,5 +101,5 @@ variable "lc_user_data" {
 
 variable "additional_security_group_ids" {
   type    = "list"
-  default = ""
+  default = []
 }
