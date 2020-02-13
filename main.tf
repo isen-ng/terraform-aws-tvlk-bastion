@@ -75,80 +75,80 @@ resource "aws_security_group" "bastion" {
   }
 }
 
-resource "aws_security_group" "postgres" {
-  name        = "${var.service_name}-postgres"
-  vpc_id      = "${var.vpc_id}"
-  description = "${var.service_name}-postgres security group"
+# resource "aws_security_group" "postgres" {
+#   name        = "${var.service_name}-postgres"
+#   vpc_id      = "${var.vpc_id}"
+#   description = "${var.service_name}-postgres security group"
 
-  tags = {
-    Name          = "${var.service_name}-postgres"
-    Service       = "${var.service_name}"
-    ProductDomain = "${var.product_domain}"
-    Environment   = "${var.environment}"
-    Description   = "Security group for ${var.service_name}-postgres"
-    ManagedBy     = "terraform"
-  }
-}
+#   tags = {
+#     Name          = "${var.service_name}-postgres"
+#     Service       = "${var.service_name}"
+#     ProductDomain = "${var.product_domain}"
+#     Environment   = "${var.environment}"
+#     Description   = "Security group for ${var.service_name}-postgres"
+#     ManagedBy     = "terraform"
+#   }
+# }
 
-resource "aws_security_group" "mongod" {
-  name        = "${var.service_name}-mongod"
-  vpc_id      = "${var.vpc_id}"
-  description = "${var.service_name}-mongod security group"
+# resource "aws_security_group" "mongod" {
+#   name        = "${var.service_name}-mongod"
+#   vpc_id      = "${var.vpc_id}"
+#   description = "${var.service_name}-mongod security group"
 
-  tags = {
-    Name          = "${var.service_name}-mongod"
-    Service       = "${var.service_name}"
-    ProductDomain = "${var.product_domain}"
-    Environment   = "${var.environment}"
-    Description   = "Security group for ${var.service_name}-mongod"
-    ManagedBy     = "terraform"
-  }
-}
+#   tags = {
+#     Name          = "${var.service_name}-mongod"
+#     Service       = "${var.service_name}"
+#     ProductDomain = "${var.product_domain}"
+#     Environment   = "${var.environment}"
+#     Description   = "Security group for ${var.service_name}-mongod"
+#     ManagedBy     = "terraform"
+#   }
+# }
 
-resource "aws_security_group" "mysql" {
-  name        = "${var.service_name}-mysql"
-  vpc_id      = "${var.vpc_id}"
-  description = "${var.service_name}-mysql security group"
+# resource "aws_security_group" "mysql" {
+#   name        = "${var.service_name}-mysql"
+#   vpc_id      = "${var.vpc_id}"
+#   description = "${var.service_name}-mysql security group"
 
-  tags = {
-    Name          = "${var.service_name}-mysql"
-    Service       = "${var.service_name}"
-    ProductDomain = "${var.product_domain}"
-    Environment   = "${var.environment}"
-    Description   = "Security group for ${var.service_name}-mysql"
-    ManagedBy     = "terraform"
-  }
-}
+#   tags = {
+#     Name          = "${var.service_name}-mysql"
+#     Service       = "${var.service_name}"
+#     ProductDomain = "${var.product_domain}"
+#     Environment   = "${var.environment}"
+#     Description   = "Security group for ${var.service_name}-mysql"
+#     ManagedBy     = "terraform"
+#   }
+# }
 
-resource "aws_security_group" "memcached" {
-  name        = "${var.service_name}-memcached"
-  vpc_id      = "${var.vpc_id}"
-  description = "${var.service_name}-memcached security group"
+# resource "aws_security_group" "memcached" {
+#   name        = "${var.service_name}-memcached"
+#   vpc_id      = "${var.vpc_id}"
+#   description = "${var.service_name}-memcached security group"
 
-  tags = {
-    Name          = "${var.service_name}-memcached"
-    Service       = "${var.service_name}"
-    ProductDomain = "${var.product_domain}"
-    Environment   = "${var.environment}"
-    Description   = "Security group for ${var.service_name}-memcached"
-    ManagedBy     = "terraform"
-  }
-}
+#   tags = {
+#     Name          = "${var.service_name}-memcached"
+#     Service       = "${var.service_name}"
+#     ProductDomain = "${var.product_domain}"
+#     Environment   = "${var.environment}"
+#     Description   = "Security group for ${var.service_name}-memcached"
+#     ManagedBy     = "terraform"
+#   }
+# }
 
-resource "aws_security_group" "redis" {
-  name        = "${var.service_name}-redis"
-  vpc_id      = "${var.vpc_id}"
-  description = "${var.service_name}-redis security group"
+# resource "aws_security_group" "redis" {
+#   name        = "${var.service_name}-redis"
+#   vpc_id      = "${var.vpc_id}"
+#   description = "${var.service_name}-redis security group"
 
-  tags = {
-    Name          = "${var.service_name}-redis"
-    Service       = "${var.service_name}"
-    ProductDomain = "${var.product_domain}"
-    Environment   = "${var.environment}"
-    Description   = "Security group for ${var.service_name}-redis"
-    ManagedBy     = "terraform"
-  }
-}
+#   tags = {
+#     Name          = "${var.service_name}-redis"
+#     Service       = "${var.service_name}"
+#     ProductDomain = "${var.product_domain}"
+#     Environment   = "${var.environment}"
+#     Description   = "Security group for ${var.service_name}-redis"
+#     ManagedBy     = "terraform"
+#   }
+# }
 
 # Security Group Rules
 resource "aws_security_group_rule" "bastion_https_all" {
@@ -181,102 +181,102 @@ resource "aws_security_group_rule" "bastion_ssh_all" {
   description       = "Egress from ${var.service_name}-${local.role} to all in 22"
 }
 
-resource "aws_security_group_rule" "egress_from_bastion_to_postgres_5432" {
-  type                     = "egress"
-  from_port                = "5432"
-  to_port                  = "5432"
-  protocol                 = "tcp"
-  security_group_id        = "${aws_security_group.bastion.id}"
-  source_security_group_id = "${aws_security_group.postgres.id}"
-  description              = "Egress from ${var.service_name}-${local.role} to ${var.service_name}-postgres in 5432"
-}
+# resource "aws_security_group_rule" "egress_from_bastion_to_postgres_5432" {
+#   type                     = "egress"
+#   from_port                = "5432"
+#   to_port                  = "5432"
+#   protocol                 = "tcp"
+#   security_group_id        = "${aws_security_group.bastion.id}"
+#   source_security_group_id = "${aws_security_group.postgres.id}"
+#   description              = "Egress from ${var.service_name}-${local.role} to ${var.service_name}-postgres in 5432"
+# }
 
-resource "aws_security_group_rule" "egress_from_bastion_to_mongod_27017" {
-  type                     = "egress"
-  from_port                = "27017"
-  to_port                  = "27017"
-  protocol                 = "tcp"
-  security_group_id        = "${aws_security_group.bastion.id}"
-  source_security_group_id = "${aws_security_group.mongod.id}"
-  description              = "Egress from ${var.service_name}-${local.role} to ${var.service_name}-mongod in 27017"
-}
+# resource "aws_security_group_rule" "egress_from_bastion_to_mongod_27017" {
+#   type                     = "egress"
+#   from_port                = "27017"
+#   to_port                  = "27017"
+#   protocol                 = "tcp"
+#   security_group_id        = "${aws_security_group.bastion.id}"
+#   source_security_group_id = "${aws_security_group.mongod.id}"
+#   description              = "Egress from ${var.service_name}-${local.role} to ${var.service_name}-mongod in 27017"
+# }
 
-resource "aws_security_group_rule" "ingress_from_bastion_to_postgres_5432" {
-  type                     = "ingress"
-  from_port                = "5432"
-  to_port                  = "5432"
-  protocol                 = "tcp"
-  security_group_id        = "${aws_security_group.postgres.id}"
-  source_security_group_id = "${aws_security_group.bastion.id}"
-  description              = "Ingress from ${var.service_name}-${local.role} to ${var.service_name}-postgres in 5432"
-}
+# resource "aws_security_group_rule" "ingress_from_bastion_to_postgres_5432" {
+#   type                     = "ingress"
+#   from_port                = "5432"
+#   to_port                  = "5432"
+#   protocol                 = "tcp"
+#   security_group_id        = "${aws_security_group.postgres.id}"
+#   source_security_group_id = "${aws_security_group.bastion.id}"
+#   description              = "Ingress from ${var.service_name}-${local.role} to ${var.service_name}-postgres in 5432"
+# }
 
-resource "aws_security_group_rule" "ingress_from_bastion_to_mongod_27017" {
-  type                     = "ingress"
-  from_port                = "27017"
-  to_port                  = "27017"
-  protocol                 = "tcp"
-  security_group_id        = "${aws_security_group.mongod.id}"
-  source_security_group_id = "${aws_security_group.bastion.id}"
-  description              = "Ingress from ${var.service_name}-${local.role} to ${var.service_name}-mongod in 27017"
-}
+# resource "aws_security_group_rule" "ingress_from_bastion_to_mongod_27017" {
+#   type                     = "ingress"
+#   from_port                = "27017"
+#   to_port                  = "27017"
+#   protocol                 = "tcp"
+#   security_group_id        = "${aws_security_group.mongod.id}"
+#   source_security_group_id = "${aws_security_group.bastion.id}"
+#   description              = "Ingress from ${var.service_name}-${local.role} to ${var.service_name}-mongod in 27017"
+# }
 
-resource "aws_security_group_rule" "egress_from_bastion_to_mysql_3306" {
-  type                     = "egress"
-  from_port                = "3306"
-  to_port                  = "3306"
-  protocol                 = "tcp"
-  security_group_id        = "${aws_security_group.bastion.id}"
-  source_security_group_id = "${aws_security_group.mysql.id}"
-  description              = "Egress from ${var.service_name}-${local.role} to ${var.service_name}-mysql in 3306"
-}
+# resource "aws_security_group_rule" "egress_from_bastion_to_mysql_3306" {
+#   type                     = "egress"
+#   from_port                = "3306"
+#   to_port                  = "3306"
+#   protocol                 = "tcp"
+#   security_group_id        = "${aws_security_group.bastion.id}"
+#   source_security_group_id = "${aws_security_group.mysql.id}"
+#   description              = "Egress from ${var.service_name}-${local.role} to ${var.service_name}-mysql in 3306"
+# }
 
-resource "aws_security_group_rule" "ingress_from_bastion_to_mysql_3306" {
-  type                     = "ingress"
-  from_port                = "3306"
-  to_port                  = "3306"
-  protocol                 = "tcp"
-  security_group_id        = "${aws_security_group.mysql.id}"
-  source_security_group_id = "${aws_security_group.bastion.id}"
-  description              = "Ingress from ${var.service_name}-${local.role} to ${var.service_name}-mysql in 3306"
-}
+# resource "aws_security_group_rule" "ingress_from_bastion_to_mysql_3306" {
+#   type                     = "ingress"
+#   from_port                = "3306"
+#   to_port                  = "3306"
+#   protocol                 = "tcp"
+#   security_group_id        = "${aws_security_group.mysql.id}"
+#   source_security_group_id = "${aws_security_group.bastion.id}"
+#   description              = "Ingress from ${var.service_name}-${local.role} to ${var.service_name}-mysql in 3306"
+# }
 
-resource "aws_security_group_rule" "egress_from_bastion_to_memcached_11211" {
-  type                     = "egress"
-  from_port                = "11211"
-  to_port                  = "11211"
-  protocol                 = "tcp"
-  security_group_id        = "${aws_security_group.bastion.id}"
-  source_security_group_id = "${aws_security_group.memcached.id}"
-  description              = "Egress from ${var.service_name}-${local.role} to ${var.service_name}-memcached in 11211"
-}
+# resource "aws_security_group_rule" "egress_from_bastion_to_memcached_11211" {
+#   type                     = "egress"
+#   from_port                = "11211"
+#   to_port                  = "11211"
+#   protocol                 = "tcp"
+#   security_group_id        = "${aws_security_group.bastion.id}"
+#   source_security_group_id = "${aws_security_group.memcached.id}"
+#   description              = "Egress from ${var.service_name}-${local.role} to ${var.service_name}-memcached in 11211"
+# }
 
-resource "aws_security_group_rule" "ingress_from_bastion_to_memcached_11211" {
-  type                     = "ingress"
-  from_port                = "11211"
-  to_port                  = "11211"
-  protocol                 = "tcp"
-  security_group_id        = "${aws_security_group.memcached.id}"
-  source_security_group_id = "${aws_security_group.bastion.id}"
-  description              = "Ingress from ${var.service_name}-${local.role} to ${var.service_name}-memcached in 11211"
-}
+# resource "aws_security_group_rule" "ingress_from_bastion_to_memcached_11211" {
+#   type                     = "ingress"
+#   from_port                = "11211"
+#   to_port                  = "11211"
+#   protocol                 = "tcp"
+#   security_group_id        = "${aws_security_group.memcached.id}"
+#   source_security_group_id = "${aws_security_group.bastion.id}"
+#   description              = "Ingress from ${var.service_name}-${local.role} to ${var.service_name}-memcached in 11211"
+# }
 
-resource "aws_security_group_rule" "egress_from_bastion_to_redis_6379" {
-  type                     = "egress"
-  from_port                = "6379"
-  to_port                  = "6379"
-  protocol                 = "tcp"
-  security_group_id        = "${aws_security_group.bastion.id}"
-  source_security_group_id = "${aws_security_group.redis.id}"
-  description              = "Egress from ${var.service_name}-${local.role} to ${var.service_name}-redis in 6379"
-}
+# resource "aws_security_group_rule" "egress_from_bastion_to_redis_6379" {
+#   type                     = "egress"
+#   from_port                = "6379"
+#   to_port                  = "6379"
+#   protocol                 = "tcp"
+#   security_group_id        = "${aws_security_group.bastion.id}"
+#   source_security_group_id = "${aws_security_group.redis.id}"
+#   description              = "Egress from ${var.service_name}-${local.role} to ${var.service_name}-redis in 6379"
+# }
 
-resource "aws_security_group_rule" "ingress_from_bastion_to_redis_6379" {
-  type                     = "ingress"
-  from_port                = "6379"
-  to_port                  = "6379"
-  protocol                 = "tcp"
-  security_group_id        = "${aws_security_group.redis.id}"
-  source_security_group_id = "${aws_security_group.bastion.id}"
-  description              = "Ingress from ${var.service_name}-${local.role} to ${var.service_name}-redis in 6379"
-}
+# resource "aws_security_group_rule" "ingress_from_bastion_to_redis_6379" {
+#   type                     = "ingress"
+#   from_port                = "6379"
+#   to_port                  = "6379"
+#   protocol                 = "tcp"
+#   security_group_id        = "${aws_security_group.redis.id}"
+#   source_security_group_id = "${aws_security_group.bastion.id}"
+#   description              = "Ingress from ${var.service_name}-${local.role} to ${var.service_name}-redis in 6379"
+# }
