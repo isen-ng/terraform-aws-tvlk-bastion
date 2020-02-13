@@ -149,7 +149,7 @@ resource "aws_security_group_rule" "bastion_https_all" {
   cidr_blocks       = ["0.0.0.0/0"]
   description       = "Egress from ${var.service_name}-${local.role} to all in 443"
 }
-  
+
 resource "aws_security_group_rule" "bastion_http_all" {
   type              = "egress"
   from_port         = "80"
