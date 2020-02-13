@@ -7,21 +7,27 @@ module "aws-autoscaling_bastion_asg" {
   cluster_role   = "${local.role}"
   environment    = "${var.environment}"
 
-  application  = "${local.application}"
-  description  = "${var.description}"
-  lc_user_data = "${var.lc_user_data}"
+  application = "${local.application}"
+  description = "${var.description}"
+  user_data   = "${var.lc_user_data}"
 
-  lc_security_groups = [
+  security_groups = [
     "${aws_security_group.bastion.id}",
     "${var.additional_security_group_ids}",
   ]
 
-  lc_instance_profile = "${module.bastion.instance_profile_arn}"
-  lc_instance_type    = "${var.instance_type}"
-  lc_ami_id           = "${data.aws_ami.bastion_ami.id}"
-  lc_key_name         = ""
-  lc_ebs_optimized    = "${var.ebs_optimized}"
-  lc_monitoring       = "${var.enable_detailed_monitoring}"
+  launch_template_overrides = [
+    {
+      "instance_type" = "${var.instance_type}"
+    },
+  ]
+
+  instance_profile = "${module.bastion.instance_profile_arn}"
+  image_owners     = ["${var.ami_owner_account_id}"]
+  image_filters    = ["${var.ami_name_prefix}"]
+  key_name         = ""
+  ebs_optimized    = "${var.ebs_optimized}"
+  monitoring       = "${var.enable_detailed_monitoring}"
 
   asg_vpc_zone_identifier       = "${data.aws_subnet_ids.app.ids}"
   asg_min_capacity              = "${var.asg_capacity}"
