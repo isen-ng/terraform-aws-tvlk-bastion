@@ -24,10 +24,15 @@ module "aws-autoscaling_bastion_asg" {
 
   instance_profile_name = "${module.bastion.instance_profile_arn}"
   image_owners          = ["${var.ami_owner_account_id}"]
-  image_filters         = ["${var.ami_name_prefix}"]
-  key_name              = ""
-  ebs_optimized         = "${var.ebs_optimized}"
-  monitoring            = "${var.enable_detailed_monitoring}"
+
+  image_filters = [{
+    name   = "name"
+    values = ["${var.ami_name_prefix}"]
+  }]
+
+  key_name      = ""
+  ebs_optimized = "${var.ebs_optimized}"
+  monitoring    = "${var.enable_detailed_monitoring}"
 
   asg_vpc_zone_identifier       = "${data.aws_subnet_ids.app.ids}"
   asg_min_capacity              = "${var.asg_capacity}"
