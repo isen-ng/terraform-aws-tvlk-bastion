@@ -98,3 +98,8 @@ variable "lc_user_data" {
   default     = " "
   description = "The spawned instances will have this user data. Use the rendered value of a terraform's `template_cloudinit_config` data" // https://www.terraform.io/docs/providers/template/d/cloudinit_config.html#rendered
 }
+
+variable "additional_security_group_ids" {
+  type        = "list"
+  default     = ""
+}

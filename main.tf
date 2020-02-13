@@ -13,6 +13,7 @@ module "aws-autoscaling_bastion_asg" {
 
   lc_security_groups = [
     "${aws_security_group.bastion.id}",
+    "${var.additional_security_group_ids}",
   ]
 
   lc_instance_profile = "${module.bastion.instance_profile_arn}"
