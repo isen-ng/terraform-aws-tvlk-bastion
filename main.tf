@@ -1,6 +1,6 @@
 # ASG
 module "aws-autoscaling_bastion_asg" {
-  source = "github.com/traveloka/terraform-aws-autoscaling?ref=v0.1.5"
+  source = "github.com/traveloka/terraform-aws-autoscaling?ref=v0.2.3"
 
   product_domain = "${var.product_domain}"
   service_name   = "${var.service_name}"
